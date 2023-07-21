@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class BVSV: UIScrollView {
+public class SuperCoolScrollView: UIScrollView {
     
     private var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -65,15 +65,15 @@ public class BVSV: UIScrollView {
 }
 
 extension UIView {
-    func fillParent() {
+    func fillParent(padding: CGFloat = 16) {
         guard let parent = superview else {
             fatalError("The view has no superview.")
         }
         self.translatesAutoresizingMaskIntoConstraints = false
 
-        topAnchor.constraint(equalTo: parent.safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
-        leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: 16).isActive = true
-        bottomAnchor.constraint(equalTo: parent.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
-        trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -16).isActive = true
+        topAnchor.constraint(equalTo: parent.safeAreaLayoutGuide.topAnchor, constant: padding).isActive = true
+        leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: padding).isActive = true
+        bottomAnchor.constraint(equalTo: parent.safeAreaLayoutGuide.bottomAnchor, constant: -padding).isActive = true
+        trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -padding).isActive = true
     }
 }
