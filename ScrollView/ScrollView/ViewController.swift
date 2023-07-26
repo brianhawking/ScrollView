@@ -73,7 +73,9 @@ class ViewController: UIViewController {
                 button.setTitleColor(.blue, for: .normal)
                 button.layer.borderWidth = 1
                 button.translatesAutoresizingMaskIntoConstraints = false
-              
+                button.addAction(UIAction(handler: { [weak self] _ in
+                    self?.showAlert(title: button.titleLabel?.text ?? "")
+                        }), for: .primaryActionTriggered)
                 button.widthAnchor.constraint(equalTo: button.heightAnchor).isActive = true
 
                 rowStackView.addArrangedSubview(button)
@@ -81,6 +83,22 @@ class ViewController: UIViewController {
         }
         scrollView.addView(colorButton)
         colorButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.60).isActive = true
+    }
+    
+    func showAlert(title: String) {
+        let alertController = UIAlertController(title: "Button tapped", message: "You pressed \(title)", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { _ in
+            print("OK tapped!")
+        })
+        alertController.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            print("Cancel tapped!")
+        })
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 
